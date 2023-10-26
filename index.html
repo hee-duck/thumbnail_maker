@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>썸네일 만들기</title>
+    <title>히더기의 썸네일 공장</title>
     <script type="text/javascript" src="thumbnail.js"></script>
     <style>
         #live-view {
@@ -14,6 +14,7 @@
     </style>
 </head>
 <body>
+    <!-- https://naver.worksmobile.com/wp-content/uploads/2023/01/NW_BG_NewYear_1-1-scaled.jpg 테스트 이미지 주소 -->
     <header>
         <p id="title">히더기의 썸네일 공장</p>
     </header>
@@ -33,17 +34,24 @@
             <button id="apply-custom-size" style="display: none;">완료</button>
         </div>
 
+        <!-- 보류
         <div id="composition-set">썸네일 구성 선택
-        </div>
+        </div> -->
 
         <!-- hidden 영역 / composition-set 클릭 시 해당하는 부분 아코디언 형태로 펼쳐짐-->
+        <!-- 보류
         <div id="top-text">top text<input placeholder="top" style="display: none;"></div>
         <div id="middle-text">middle text<input placeholder="middle" style="display: none;"></div>
-        <div id="bottom-text">bottom text<input placeholder="bottom" style="display: none;"></div>
+        <div id="bottom-text">bottom text<input placeholder="bottom" style="display: none;"></div> -->
 
         <div id="background-set">배경 선택
             <input type="color" id="color-picker">
             <input type="text" id="image-url-input" placeholder="이미지 URL 입력">
+        </div>
+
+        <div id="text-add">
+            <input type="text" id="user-text-input" placeholder="텍스트 입력">
+            <button id="add-text-btn">텍스트 추가</button>
         </div>
 
         <div id="user-button">
