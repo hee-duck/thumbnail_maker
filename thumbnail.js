@@ -62,7 +62,7 @@ window.onload = function () {
     // 색상 선택
     document.getElementById('color-picker').oninput = function () {
         document.getElementById('live-view').style.backgroundColor = this.value;
-        document.getElementById('live-view').style.backgroundImage = '';  // 배경 이미지 제거
+        document.getElementById('live-view').style.backgroundImage = ''; 
     }
 
     // 이미지 url 입력
@@ -134,4 +134,70 @@ window.onload = function () {
         }
     });
 
+    let currentSelectedText;  
+
+    document.getElementById('live-view').onclick = function(e) {
+        if (e.target.tagName === 'P') {
+            currentSelectedText = e.target;
+            
+            let rect = e.target.getBoundingClientRect();
+            let popup = document.getElementById('text-properties-popup');
+            popup.style.top = rect.top + 'px';
+            popup.style.left = rect.right + 10 + 'px';  
+            popup.style.display = 'block';
+            
+            // 현재 텍스트의 속성을 팝업에 설정
+            document.getElementById('font-selector').value = e.target.style.fontFamily || 'Arial';
+            document.getElementById('color-picker-popup').value = e.target.style.color || '#000000';
+            document.getElementById('font-size-popup').value = parseInt(window.getComputedStyle(e.target).fontSize, 10) || 16;
+            document.getElementById('font-weight-popup').value = e.target.style.fontWeight || '400';
+            document.getElementById('text-edit-popup').value = e.target.innerText;
+        }
+    };
+
+    document.getElementById('save-text-properties').onclick = function() {
+        if (currentSelectedText) {
+            currentSelectedText.style.fontFamily = document.getElementById('font-selector').value;
+            currentSelectedText.style.color = document.getElementById('color-picker-popup').value;
+            currentSelectedText.style.fontSize = document.getElementById('font-size-popup').value + 'px';
+            currentSelectedText.style.fontWeight = document.getElementById('font-weight-popup').value;
+            currentSelectedText.innerText = document.getElementById('text-edit-popup').value;
+            
+            // 팝업 숨기기
+            document.getElementById('text-properties-popup').style.display = 'none';
+        }
+    };
+
+    // 팝업 외의 영역을 클릭하면 팝업 숨기기
+    document.body.addEventListener('click', function(e) {
+        if (!document.getElementById('text-properties-popup').contains(e.target) && e.target.tagName !== 'P') {
+            document.getElementById('text-properties-popup').style.display = 'none';
+        }
+    }, true);
+
+    // 초기화 버튼
+    document.getElementById('reset-btn').onclick = function() {
+        let liveView = document.getElementById('live-view');
+        liveView.style.backgroundImage = '';
+        liveView.style.backgroundColor = '';
+        
+        Array.from(liveView.getElementsByTagName('p')).forEach(el => el.remove());
+        
+        document.getElementById('text-properties-popup').style.display = 'none';
+    };
+
+    // 이미지 저장 버튼
+    document.getElementById('download-btn').onclick = function() {
+        let liveView = document.getElementById('live-view');
+        
+        html2canvas(liveView).then(function(canvas) {
+            // 캔버스를 이미지로 변환
+            let link = document.createElement('a');
+            link.download = 'preview.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    };
+    
+    
 }

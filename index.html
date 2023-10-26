@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>히더기의 썸네일 공장</title>
+    <!-- html2canvas 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script type="text/java" src="fileReader.js"></script>
     <script type="text/javascript" src="thumbnail.js"></script>
     <style>
         #live-view {
@@ -19,8 +22,35 @@
         <p id="title">히더기의 썸네일 공장</p>
     </header>
     <section>
-        <div id="live-view">
-            
+        <div id="live-view"></div>
+
+        <!-- 폰트 팝업 -->
+        <div id="text-properties-popup" style="position: absolute; display: none; border: 1px solid black; background-color: white; padding: 10px;">
+            <label>
+                폰트:
+                <select id="font-selector">
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <!-- 폰트 추가... -->
+                </select>
+            </label>
+            <label>
+                색상:
+                <input type="color" id="color-picker-popup">
+            </label>
+            <label>
+                폰트 크기:
+                <input type="number" id="font-size-popup" min="10" max="100">
+            </label>
+            <label>
+                굵기:
+                <input type="number" id="font-weight-popup" min="100" step="100" max="900">
+            </label>
+            <label>
+                텍스트 수정:
+                <input type="text" id="text-edit-popup">
+            </label>
+            <button id="save-text-properties">저장</button>
         </div>
 
         <div id="size-set">이미지 크기 선택
@@ -33,16 +63,6 @@
             <input id="custom-column" placeholder="세로" style="display: none;">
             <button id="apply-custom-size" style="display: none;">완료</button>
         </div>
-
-        <!-- 보류
-        <div id="composition-set">썸네일 구성 선택
-        </div> -->
-
-        <!-- hidden 영역 / composition-set 클릭 시 해당하는 부분 아코디언 형태로 펼쳐짐-->
-        <!-- 보류
-        <div id="top-text">top text<input placeholder="top" style="display: none;"></div>
-        <div id="middle-text">middle text<input placeholder="middle" style="display: none;"></div>
-        <div id="bottom-text">bottom text<input placeholder="bottom" style="display: none;"></div> -->
 
         <div id="background-set">배경 선택
             <input type="color" id="color-picker">
