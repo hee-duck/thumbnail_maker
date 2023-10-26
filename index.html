@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>썸네일 만들기</title>
+    <script type="text/javascript" src="thumbnail.js"></script>
+    <style>
+        #live-view {
+            border: 1px solid black;  
+            transition: width 0.3s, height 0.3s; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p id="title">히더기의 썸네일 공장</p>
+    </header>
+    <section>
+        <div id="live-view">
+            
+        </div>
+
+        <div id="size-set">이미지 크기 선택
+            <button id="youtube">유튜브 썸네일(1280px 720px)</button>
+            <button id="instagram-square">인스타그램 정방향(1080px 1080px)</button>
+            <button id="instagram-row">인스타그램 가로방향(1080px 566px)</button>
+            <button id="instagram-column">인스타그램 세로방향(1080px 566px)</button>
+            <button id="custom">사이즈 직접 선택</button>
+            <input id="custom-row" placeholder="가로" style="display: none;">
+            <input id="custom-column" placeholder="세로" style="display: none;">
+            <button id="apply-custom-size" style="display: none;">완료</button>
+        </div>
+
+        <div id="composition-set">썸네일 구성 선택
+        </div>
+
+        <!-- hidden 영역 / composition-set 클릭 시 해당하는 부분 아코디언 형태로 펼쳐짐-->
+        <div id="top-text">top text<input placeholder="top" style="display: none;"></div>
+        <div id="middle-text">middle text<input placeholder="middle" style="display: none;"></div>
+        <div id="bottom-text">bottom text<input placeholder="bottom" style="display: none;"></div>
+
+        <div id="background-set">배경 선택
+            <input type="color" id="color-picker">
+            <input type="text" id="image-url-input" placeholder="이미지 URL 입력">
+        </div>
+
+        <div id="user-button">
+            <button id="reset-btn">
+                <p>초기화</p>
+            </button>
+            <button id="download-btn">
+                <P>이미지 저장</P>
+            </button>
+        </div>
+    </section>
+    <footer>
+    </footer>
+</body>
+</html>
